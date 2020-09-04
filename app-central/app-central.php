@@ -17,14 +17,24 @@ function create_pages(){
     // Create register page
     wp_insert_post( array(
         'post_title'     => 'Register',
-        'post_name'      => 'Register',
-        'post_content'   => 'This is the plugin register page',
+        'post_name'      => 'register',
         'post_status'    => 'publish',
         'post_author'    => $user_id, // or "1" (super-admin?)
         'post_type'      => 'page',
         'menu_order'     => 1,
         'comment_status' => 'closed',
-        'ping_status'    => 'closed'
+        'ping_status'    => 'closed',
+        'page_template'  => 'template-register.php'
     ));
 }
 register_activation_hook(__FILE__, 'create_pages');
+
+
+// Ensures plugin pages are displayed with the plugin templates
+function add_page_template($template){
+    if(is_page( 'register' )){
+        $template = plugin_dir_path(__FILE__) . 'templates/template-register.php';
+    }
+    return $template;
+}
+add_filter( 'template_include', 'add_page_template', 99 );
