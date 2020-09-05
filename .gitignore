@@ -25,4 +25,3 @@ node_modules/
 #ignore zip files created for deployment
 *.zip
 
-app-central/*

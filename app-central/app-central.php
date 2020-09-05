@@ -13,7 +13,6 @@ Text Domain: app-central
 */
 
 function create_pages(){
-    
     // Create register page
     wp_insert_post( array(
         'post_title'     => 'Register',
